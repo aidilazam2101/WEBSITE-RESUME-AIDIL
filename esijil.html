@@ -19,32 +19,28 @@
         ::-webkit-scrollbar {
             width: 12px;
         }
-
         ::-webkit-scrollbar-track {
             background: #111;
         }
-
         ::-webkit-scrollbar-thumb {
             background: cyan;
             border-radius: 6px;
             box-shadow: 0 0 10px cyan;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: #ff00ff;
             box-shadow: 0 0 15px #ff00ff;
         }
 
-        /* Navbar */
+        /* ================= NAVBAR ================= */
         .navbar {
             width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center; 
+            align-items: center;
             padding: 10px 20px;
             background: rgba(0,0,0,0.5);
             backdrop-filter: blur(5px);
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -63,8 +59,6 @@
         .navbar-menu {
             display: flex;
             gap: 12px;
-            justify-content: center;
-            align-items: center;
         }
 
         .navbar a {
@@ -84,14 +78,11 @@
         }
 
         #digitalClock {
-            font-family: 'Orbitron', monospace;
             font-size: 16px;
-            font-weight: bold;
             padding: 4px 10px;
             border: 2px solid #00ffff;
             border-radius: 6px;
-            text-align: center;
-            text-shadow: 0 0 5px #00ffff, 0 0 15px #ff00ff;
+            text-shadow: 0 0 10px cyan;
             position: absolute;
             right: 0;
         }
@@ -102,18 +93,16 @@
             display: flex;
             gap: 2px;
             margin-top: 5px;
-            overflow: hidden;
         }
 
         .navbar-visualizer .bar {
             flex: 1;
             height: 5px;
-            background: linear-gradient(90deg, cyan, magenta, purple, cyan);
+            background: linear-gradient(90deg, cyan, magenta, purple);
             border-radius: 2px;
-            transition: height 0.05s linear;
         }
 
-        /* ===== E-Sijil ===== */
+        /* ================= E-SIJIL ================= */
         h1 {
             text-align: center;
             margin-top: 20px;
@@ -134,15 +123,15 @@
             background: rgba(17,17,17,0.85);
             padding: 15px;
             border-radius: 12px;
-            border-left: 4px solid #00ffff;
+            border-left: 4px solid cyan;
             box-shadow: 0 0 20px cyan;
-            transition: 0.3s;
             text-align: center;
+            transition: 0.3s;
         }
 
         .certificate-card:hover {
-            border-left-color: #ff00ff;
-            box-shadow: 0 0 35px #ff00ff;
+            border-left-color: magenta;
+            box-shadow: 0 0 35px magenta;
         }
 
         .certificate-card img {
@@ -150,7 +139,8 @@
             aspect-ratio: 3/4;
             object-fit: cover;
             border-radius: 10px;
-            border: 2px solid #00ffff;
+            border: 2px solid cyan;
+            cursor: pointer;
             transition: 0.3s;
         }
 
@@ -159,28 +149,60 @@
         }
 
         .certificate-card h3 {
+            margin-top: 10px;
             color: #00ffff;
-            text-shadow: 0 0 5px #ff00ff;
-            margin: 10px 0 0;
+            text-shadow: 0 0 10px magenta;
         }
 
-        @media screen and (max-width: 900px) {
+        @media(max-width: 900px) {
             .certificate-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media screen and (max-width: 500px) {
+        @media(max-width: 500px) {
             .certificate-container {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* ================= FULLSCREEN VIEWER ================= */
+        .image-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .image-viewer img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            border: 3px solid cyan;
+            box-shadow: 0 0 40px cyan;
+        }
+
+        .image-viewer span {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+            color: cyan;
+            cursor: pointer;
+            text-shadow: 0 0 20px magenta;
         }
     </style>
 </head>
 
 <body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 <div class="navbar">
     <div class="navbar-menu-container">
         <div class="navbar-menu">
@@ -205,34 +227,44 @@
 
 <h1>E-Sijil</h1>
 
-<!-- GRID 8 SIJIL -->
+<!-- SIJIL GRID -->
 <div class="certificate-container">
+    <div class="certificate-card"><img src="images/SIJIL_1.jpg" onclick="openImage(this.src)"><h3>SIJIL 1</h3></div>
+    <div class="certificate-card"><img src="images/SIJIL_2.jpg" onclick="openImage(this.src)"><h3>SIJIL 2</h3></div>
+    <div class="certificate-card"><img src="images/SIJIL_3.jpg" onclick="openImage(this.src)"><h3>SIJIL 3</h3></div>
+    <div class="certificate-card"><img src="images/SIJIL_4.jpg" onclick="openImage(this.src)"><h3>SIJIL 4</h3></div>
 
-    <div class="certificate-card"><img src="images/SIJIL_1.jpg"><h3>SIJIL 1</h3></div>
-    <div class="certificate-card"><img src="images/SIJIL_2.jpg"><h3>SIJIL 2</h3></div>
-    <div class="certificate-card"><img src="images/SIJIL_3.jpg"><h3>SIJIL 3</h3></div>
-    <div class="certificate-card"><img src="images/SIJIL_4.jpg"><h3>SIJIL 4</h3></div>
+    <div class="certificate-card"><img src="images/SIJIL_5.jpg" onclick="openImage(this.src)"><h3>SIJIL 5</h3></div>
+    <div class="certificate-card"><img src="images/SIJIL_6.jpg" onclick="openImage(this.src)"><h3>SIJIL 6</h3></div>
+    <div class="certificate-card"><img src="images/SIJIL_7.jpg" onclick="openImage(this.src)"><h3>SIJIL 7</h3></div>
+    <div class="certificate-card"><img src="images/SIJIL_8.jpg" onclick="openImage(this.src)"><h3>SIJIL 8</h3></div>
+</div>
 
-    <div class="certificate-card"><img src="images/SIJIL_5.jpg"><h3>SIJIL 5</h3></div>
-    <div class="certificate-card"><img src="images/SIJIL_6.jpg"><h3>SIJIL 6</h3></div>
-    <div class="certificate-card"><img src="images/SIJIL_7.jpg"><h3>SIJIL 7</h3></div>
-    <div class="certificate-card"><img src="images/SIJIL_8.jpg"><h3>SIJIL 8</h3></div>
-
+<!-- FULLSCREEN IMAGE -->
+<div class="image-viewer" id="imageViewer" onclick="closeImage()">
+    <span>✖</span>
+    <img id="viewerImg">
 </div>
 
 <script>
     function updateClock() {
-        const now = new Date();
-        let h = now.getHours();
-        let m = now.getMinutes();
-        let s = now.getSeconds();
-        h = h < 10 ? '0'+h : h;
-        m = m < 10 ? '0'+m : m;
-        s = s < 10 ? '0'+s : s;
-        document.getElementById('digitalClock').textContent = h + ':' + m + ':' + s;
+        const n = new Date();
+        document.getElementById("digitalClock").innerHTML =
+            String(n.getHours()).padStart(2,'0') + ":" +
+            String(n.getMinutes()).padStart(2,'0') + ":" +
+            String(n.getSeconds()).padStart(2,'0');
     }
-    setInterval(updateClock, 1000);
+    setInterval(updateClock,1000);
     updateClock();
+
+    function openImage(src){
+        document.getElementById("viewerImg").src = src;
+        document.getElementById("imageViewer").style.display = "flex";
+    }
+
+    function closeImage(){
+        document.getElementById("imageViewer").style.display = "none";
+    }
 </script>
 
 </body>
